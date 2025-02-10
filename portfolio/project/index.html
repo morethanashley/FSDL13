@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking System</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Navbar styles */
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero section */
+        .hero {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+        }
+
+        /* Section Header */
+        h2 {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 36px;
+            color: #333;
+        }
+
+        /* Service Sections */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 20px;
+            padding: 20px;
+        }
+
+        .service {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .service h3 {
+            font-size: 24px;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+
+        .service p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .service ul {
+            list-style-type: none;
+            margin: 10px 0;
+            padding: 0;
+        }
+
+        .service ul li {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .service ul li strong {
+            color: #007bff;
+        }
+
+        .service h4 {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        /* Responsiveness for small devices */
+        @media (max-width: 768px) {
+            .services {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="acc.html">Account</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#login">Login</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Welcome to Our Banking System</h1>
+        <p>Your trusted partner for financial services</p>
+    </div>
+
+    <!-- Services Section -->
+    <h2 id="services">Our Services</h2>
+    <div class="services">
+
+        <!-- Online Banking -->
+        <div class="service">
+            <h3>Online Banking</h3>
+            <p>Access your bank account from anywhere with our secure online banking platform. Check your balance, make transfers, and pay bills at your convenience.</p>
+        </div>
+
+        <!-- Loans & Mortgages -->
+        <div class="service">
+            <h3>Loans & Mortgages</h3>
+            <p>Get customized loan and mortgage options to suit your needs. Whether you're buying a new home, refinancing, or need a personal loan, we have options that fit your financial goals.</p>
+            <h4>Types of Loans We Offer:</h4>
+            <ul>
+                <li><strong>Personal Loans</strong>: For expenses like home improvements, education, or debt consolidation.</li>
+                <li><strong>Home Loans</strong>: Competitive interest rates to help you secure your dream home.</li>
+                <li><strong>Car Loans</strong>: Flexible terms for purchasing a new or used vehicle.</li>
+                <li><strong>Education Loans</strong>: Financial assistance for tuition and related costs.</li>
+            </ul>
+            <h4>Mortgage Options:</h4>
+            <ul>
+                <li><strong>Fixed-Rate Mortgages</strong>: Predictable payments with a fixed interest rate for the entire loan term.</li>
+                <li><strong>Adjustable-Rate Mortgages (ARMs)</strong>: Initial lower rates that adjust periodically based on market conditions.</li>
+                <li><strong>Refinancing</strong>: Lower your monthly payments or shorten your loan term by refinancing your mortgage.</li>
+            </ul>
+        </div>
+
+        <!-- Investment Services -->
+        <div class="service">
+            <h3>Investment Services</h3>
+            <p>Start growing your wealth with our investment options designed to maximize returns while managing risks. Our experienced advisors will help you make informed decisions.</p>
+            <h4>Investment Options:</h4>
+            <ul>
+                <li><strong>Stocks</strong>: Buy shares in publicly traded companies and potentially profit from capital gains and dividends.</li>
+                <li><strong>Bonds</strong>: Low-risk, fixed-income investments issued by governments or corporations.</li>
+                <li><strong>Mutual Funds</strong>: Diversified portfolios of stocks, bonds, or other assets managed by professionals.</li>
+                <li><strong>ETFs (Exchange-Traded Funds)</strong>: A popular investment vehicle that combines the diversification of mutual funds with the liquidity of stocks.</li>
+            </ul>
+            <h4>Why Choose Our Investment Services?</h4>
+            <ul>
+                <li>Personalized investment strategies based on your risk tolerance and goals.</li>
+                <li>Access to a wide range of asset classes, including international options.</li>
+                <li>Regular portfolio reviews and updates to keep you on track.</li>
+                <li>Expert advice to help you make informed decisions.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 Banking System. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
