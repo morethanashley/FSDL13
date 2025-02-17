@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 80%;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .weather-info {
+            margin-top: 20px;
+        }
+
+        .temp {
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .description {
+            font-size: 20px;
+            color: #555;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Weather App</h1>
+
+        <div class="input-group">
+            <input type="text" id="city" placeholder="Enter city name">
+            <button id="getWeatherBtn">Get Weather</button>
+        </div>
+
+        <div id="weatherResult" class="weather-info">
+            <div class="temp" id="temperature"></div>
+            <div class="description" id="weatherDescription"></div>
+            <div class="error" id="errorMessage"></div>
+        </div>
+    </div>
+
+    <script>
+        const apiKey = "705783bd71cc43b0a4760051251702"; // Your API key
+        const getWeatherBtn = document.getElementById("getWeatherBtn");
+
+        getWeatherBtn.addEventListener("click", function() {
+            const city = document.getElementById("city").value;
+            if (city === "") {
+                alert("Please enter a city name");
+                return;
+            }
+
+            fetchWeather(city);
+        });
+
+        function fetchWeather(city) {
+            const url = `https://api.weatherapi.com/v1/current.json?key=YOUR_API_KEY&q=CITY_NAME`;
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("City not found");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const temperature = data.main.temp;
+                    const description = data.weather[0].description;
+                    const errorMessage = document.getElementById("errorMessage");
+
+                    document.getElementById("temperature").textContent = `${temperature}°C`;
+                    document.getElementById("weatherDescription").textContent = description.charAt(0).toUpperCase() + description.slice(1);
+                    errorMessage.textContent = "";
+
+                    document.getElementById("weatherResult").style.display = "block";
+                })
+                .catch(error => {
+                    document.getElementById("errorMessage").textContent = "City not found, please try again.";
+                    document.getElementById("weatherResult").style.display = "none";
+                });
+        }
+    </script>
+
+</body>
+</html>
