@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="studentApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Records Application</title>
+    <!-- Internal CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-group input.ng-invalid.ng-touched {
+            border-color: #ff0000;
+        }
+        .error-message {
+            color: #ff0000;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .student-list {
+            margin-top: 20px;
+        }
+        .student-list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .student-list th, .student-list td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .student-list th {
+            background-color: #f8f9fa;
+        }
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+    <!-- Include AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        // Define AngularJS module and controller
+        angular.module('studentApp', [])
+            .controller('StudentController', function($scope) {
+                // Initialize students array
+                $scope.students = [];
+
+                // Function to add a new student
+                $scope.addStudent = function() {
+                    if ($scope.studentForm.$valid) {
+                        // Add the new student to the array
+                        $scope.students.push({
+                            name: $scope.newStudent.name,
+                            age: $scope.newStudent.age,
+                            grade: $scope.newStudent.grade
+                        });
+
+                        // Clear the form
+                        $scope.newStudent = {};
+                        $scope.studentForm.$setPristine();
+                    }
+                };
+            });
+    </script>
+</head>
+<body ng-controller="StudentController">
+    <div class="container">
+        <h1>Student Records Application</h1>
+        <!-- Student Form -->
+        <form name="studentForm" novalidate>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" ng-model="newStudent.name" required>
+                <div class="error-message" ng-show="studentForm.name.$touched && studentForm.name.$invalid">
+                    Name is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" ng-model="newStudent.age" required min="10" max="20">
+                <div class="error-message" ng-show="studentForm.age.$touched && studentForm.age.$invalid">
+                    Age must be between 10 and 20.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="grade">Grade:</label>
+                <input type="text" id="grade" name="grade" ng-model="newStudent.grade" required>
+                <div class="error-message" ng-show="studentForm.grade.$touched && studentForm.grade.$invalid">
+                    Grade is required.
+                </div>
+            </div>
+            <button class="btn" ng-click="addStudent()" ng-disabled="studentForm.$invalid">Add Student</button>
+        </form>
+
+        <!-- Student List -->
+        <div class="student-list">
+            <h2>Student List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="student in students">
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.age }}</td>
+                        <td>{{ student.grade }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
