@@ -1,25 +1,24 @@
-var http = require('http');
-var formidable = require('formidable');
-var fs = require('fs');
+var nodemailer = require('nodemailer');
 
-http.createServer(function (req, res) {
-  if (req.url == '/fileupload') {
-    var form = new formidable.IncomingForm();
-    form.parse(req, function (err, fields, files) {
-      var oldpath = files.filetoupload.filepath;
-      var newpath = '/workspaces/FSDL13/portfolio/week09/uploads/' + files.filetoupload.originalFilename;
-      fs.rename(oldpath, newpath, function (err) {
-        if (err) throw err;
-        res.write('File uploaded and moved!');
-        res.end();
-      });
- });
-  } else {
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
-    res.write('<input type="file" name="filetoupload"><br>');
-    res.write('<input type="submit">');
-    res.write('</form>');
-    return res.end();
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'ashleyferns0407@gmail.com',
+    pass: 'JULO2802'
   }
-}).listen(8080);
+});
+
+var mailOptions = {
+  from: 'ashleyferns0407@gmail.com',
+  to: 'ashleyferns0407@gmail.com',
+  subject: 'Sending Email using Node.js',
+  text: 'That was easy!'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
