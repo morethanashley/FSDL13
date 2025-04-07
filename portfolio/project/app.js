@@ -42,8 +42,12 @@ app.post('/signup', async (req, res) => {
         await newUser.save();
         res.send('User registered successfully!');
     } catch (err) {
-        console.error(err);
-        res.status(500).send('Error registering user.');
+        if (err.code === 11000) { // Duplicate key error
+            res.status(400).send('Username or email already exists.');
+        } else {
+            console.error('Error details:', err);
+            res.status(500).send('Error registering user.');
+        }
     }
 });
 
